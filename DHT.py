@@ -247,6 +247,8 @@ class Node:
 			for file in files:
 				self.recieveFile(soc,self.host + "_" + str(self.port) + "/" + file)
 				self.files.append(file)
+			
+				
 
 
 			
@@ -378,6 +380,10 @@ class Node:
 		for file in self.files:
 			time.sleep(0.1)
 			self.sendFile(soc,self.host + "_" + str(self.port) + "/" + file)
+
+		for file in self.backUpFiles:
+			time.sleep(0.05)
+			self.backup_to_successor(file)		
 
 	def sendFile(self, soc, fileName):
 		''' 

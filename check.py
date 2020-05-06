@@ -241,11 +241,7 @@ except:
 	print ("Run this script file as 'python check.py <port>' (where 1000 < port < 65500).")
 	os._exit(1)
 
-ports = []
-points = []
-
-for i in range(1,10):
-	ports.append(random.randint(1000*i, random.randint(1000,65500)))
+ports = [start_port]
 
 for start_port in ports:
 
@@ -262,7 +258,6 @@ for start_port in ports:
 	nodes, p6 = testFailureTolerance(nodes, files)
 
 	print ("\nTotal points: ", p1+p2+p3+p4+p5+p6, "/ 40")
-	points.append(p1+p2+p3+p4+p5+p6)
 	path = "./"
 	files = os.listdir(path)
 	for f in files:
@@ -272,9 +267,5 @@ for start_port in ports:
 			shutil.rmtree(os.path.join(path, f))
 	kill(nodes)
 	time.sleep(2)
-
-print("Ports....")
-print(ports)
-print("Points....")
-print(points)
+	
 os._exit(1)
